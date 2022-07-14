@@ -1,14 +1,21 @@
 <template>
   <div class="header">
-    <div class="container">
+    <div class="container inner">
         <h1>TodoList</h1>
+        <slot></slot>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
 
+  props: {
+    todos: {
+      type: Array,
+    }
+  },
 }
 </script>
 
@@ -18,8 +25,13 @@ export default {
   background: rgba(0, 0, 0, 0.877);
   padding: 15px 0;
 }
-  h1{
-    font-size: 32px;
-    color: white;
-  }
+.inner{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+h1{
+  font-size: 32px;
+  color: white;
+}
 </style>

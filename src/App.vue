@@ -1,13 +1,38 @@
 <template>
   <div class="app">
-    <v-header />
+    <v-header>
+      <todo-form  @create='createTodo' />
+    </v-header>
+    <todo-list 
+      :todos='todos'
+    />
   </div>
 </template>
 
 <script>
 import vHeader from './components/vHeader';
+import TodoList from '@/components/TodoList'
+import TodoForm from '@/components/TodoForm'
 export default {
-  components: { vHeader },};
+  components: { vHeader, TodoList, TodoForm },
+  
+  data() {
+    return {
+      todos: [
+        {id: 1, title: 'Todo 1', time: new Date(Date.now()).toLocaleString()},
+        {id: 2, title: 'Todo 2', time: new Date(Date.now()).toLocaleString()},
+        {id: 3, title: 'Todo 3', time: new Date(Date.now()).toLocaleString()},
+        {id: 4, title: 'Todo 4', time: new Date(Date.now()).toLocaleString()},
+      ]
+    }
+  },
+
+  methods: {
+    createTodo(todo) {
+      this.todos.push(todo)
+    }
+  }
+};
 </script>
 
 <style lang="scss">
