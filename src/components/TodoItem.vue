@@ -4,11 +4,14 @@
       <span class="title">{{ todo.title }}</span>
       <span class="time">{{ todo.time }}</span>
     </div>
+    <my-button>Delete</my-button>
   </div>
 </template>
 
 <script>
+import MyButton from './UI/MyButton.vue'
 export default {
+  components: { MyButton },
     props: {
         todo: {
             type: Object
@@ -25,6 +28,10 @@ export default {
   padding: 25px;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2), 0 4px 6px rgba(0,0,0,0.2);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   &:last-child{
     margin-bottom: 0;
   }

@@ -10,6 +10,7 @@ import MyButton from "./UI/MyButton";
 import MyInput from "./UI/MyInput";
 export default {
   components: { MyInput, MyButton },
+
   data() {
     return {
       todo: {
@@ -17,6 +18,7 @@ export default {
       },
     };
   },
+  
   methods: {
     createTodo() {
       this.todo.id = Date.now();
