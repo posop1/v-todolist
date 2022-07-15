@@ -22,7 +22,8 @@ export default {
   methods: {
     createTodo() {
       this.todo.id = Date.now();
-      this.todo.time = new Date(Date.now()).toLocaleString()
+      this.todo.Datetime = new Date(Date.now()).toLocaleDateString().slice(0,-5);
+      this.todo.time = new Date(Date.now()).toLocaleTimeString().slice(0,-3)
       this.$emit("create", this.todo);
       this.todo = {
         title: "",

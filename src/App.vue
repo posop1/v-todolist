@@ -19,10 +19,10 @@ export default {
   data() {
     return {
       todos: [
-        {id: 1, title: 'Todo 1', time: new Date(Date.now()).toLocaleString()},
-        {id: 2, title: 'Todo 2', time: new Date(Date.now()).toLocaleString()},
-        {id: 3, title: 'Todo 3', time: new Date(Date.now()).toLocaleString()},
-        {id: 4, title: 'Todo 4', time: new Date(Date.now()).toLocaleString()},
+        {id: 1, title: 'Todo 1', Datetime: new Date(Date.now()).toLocaleDateString().slice(0,-5), time: new Date(Date.now()).toLocaleTimeString().slice(0,-3)},
+        {id: 2, title: 'Todo 2', Datetime: new Date(Date.now()).toLocaleDateString().slice(0,-5), time: new Date(Date.now()).toLocaleTimeString().slice(0,-3)},
+        {id: 3, title: 'Todo 3', Datetime: new Date(Date.now()).toLocaleDateString().slice(0,-5), time: new Date(Date.now()).toLocaleTimeString().slice(0,-3)},
+        {id: 4, title: 'Todo 4', Datetime: new Date(Date.now()).toLocaleDateString().slice(0,-5), time: new Date(Date.now()).toLocaleTimeString().slice(0,-3)},
       ]
     }
   },

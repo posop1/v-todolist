@@ -2,7 +2,10 @@
   <div class="Todoitem">
     <div class="descrip">
       <span class="title">{{ todo.title }}</span>
-      <span class="time">{{ todo.time }}</span>
+      <div class="timebox">
+        <span class="time">{{ todo.Datetime }}</span>
+        <span class="time">{{ todo.time }}</span>
+      </div>
     </div>
     <my-button>Delete</my-button>
   </div>
@@ -47,5 +50,6 @@ export default {
 .time{
   font-size: 14px;
   opacity: 0.6;
+  margin-right: 8px;
 }
 </style>
