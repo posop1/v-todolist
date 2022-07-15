@@ -5,6 +5,7 @@
     </v-header>
     <todo-list 
       :todos='todos'
+      @remove='removeTodo'
     />
   </div>
 </template>
@@ -30,6 +31,9 @@ export default {
   methods: {
     createTodo(todo) {
       this.todos.push(todo)
+    },
+    removeTodo(todo) {
+      this.todos = this.todos.filter(t => t.id !== todo.id)
     }
   }
 };

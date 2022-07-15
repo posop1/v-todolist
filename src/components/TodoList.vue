@@ -1,7 +1,17 @@
 <template>
-  <div class="TodoList">
+  <div class="TodoList" v-if="todos.length > 0">
+    <div class="container">
+        <todo-item 
+          :key="todo.id" 
+          v-for="todo in todos" 
+          :todo='todo'
+          @remove="$emit('remove', todo)"
+        />
+    </div>
+  </div>
+  <div class="TodoEmpty" v-else>
     <div class="container inner">
-        <todo-item :key="todo.id" v-for="todo in todos" :todo='todo'/>
+      <h2>Todo is empty</h2>
     </div>
   </div>
 </template>
@@ -23,5 +33,14 @@ export default {
 .TodoList{
   margin-top: 100px;
 }
-
+.TodoEmpty {
+  margin-top: 100px;
+}
+.inner{
+  display: flex;
+  justify-content: center;
+  h2{
+    font-size: 40px;
+  }
+}
 </style>

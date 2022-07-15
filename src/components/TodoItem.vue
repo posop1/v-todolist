@@ -7,7 +7,11 @@
         <span class="time">{{ todo.time }}</span>
       </div>
     </div>
-    <my-button>Delete</my-button>
+    <my-button
+      @click="$emit('remove', todo)"
+    >
+      Delete
+    </my-button>
   </div>
 </template>
 
