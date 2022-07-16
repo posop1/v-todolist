@@ -1,7 +1,10 @@
 <template>
   <div class="app">
     <v-header>
-      <todo-form  @create='createTodo' />
+      <my-button @click="openDialog">Create Notes</my-button>
+      <my-dialog v-model:open="dialogVisible">
+        <todo-form  @create='createTodo' />  
+      </my-dialog>
     </v-header>
     <todo-list 
       :todos='todos'
@@ -24,16 +27,21 @@ export default {
         {id: 2, title: 'Todo 2', Datetime: new Date(Date.now()).toLocaleDateString().slice(0,-5), time: new Date(Date.now()).toLocaleTimeString().slice(0,-3)},
         {id: 3, title: 'Todo 3', Datetime: new Date(Date.now()).toLocaleDateString().slice(0,-5), time: new Date(Date.now()).toLocaleTimeString().slice(0,-3)},
         {id: 4, title: 'Todo 4', Datetime: new Date(Date.now()).toLocaleDateString().slice(0,-5), time: new Date(Date.now()).toLocaleTimeString().slice(0,-3)},
-      ]
+      ],
+      dialogVisible: false
     }
   },
 
   methods: {
     createTodo(todo) {
       this.todos.push(todo)
+      this.dialogVisible = false
     },
     removeTodo(todo) {
       this.todos = this.todos.filter(t => t.id !== todo.id)
+    },
+    openDialog() {
+      this.dialogVisible = true
     }
   }
 };
