@@ -1,17 +1,32 @@
 <template>
   <div class="Todoitem">
     <div class="descrip">
-      <span class="title">{{ todo.title }}</span>
-      <div class="timebox">
-        <span class="time">{{ todo.Datetime }}</span>
-        <span class="time">{{ todo.time }}</span>
-      </div>
+      <span class="title" v-if="!todo.completed">
+        {{ todo.title }}
+      </span>
+      <span class="title" v-if="todo.completed">
+        <s>{{ todo.title }}</s>
+      </span>
     </div>
-    <my-button
+    <my-button v-if="!todo.completed"
       @click="$emit('remove', todo)"
     >
       Delete
     </my-button>
+    <div class="btn" v-else>
+      <my-button 
+        @click="$emit('remove', todo)"
+        class="remove"
+      >
+        Return Note
+      </my-button>
+      <my-button 
+        @click="$emit('delete', todo)"
+      >
+        Delete
+      </my-button>
+    </div>
+    
   </div>
 </template>
 
@@ -49,11 +64,13 @@ export default {
 }
 .title{
   font-size: 20px;
-  padding-bottom: 18px;
 }
 .time{
   font-size: 14px;
   opacity: 0.6;
   margin-right: 8px;
+}
+.remove{
+  margin-right: 30px;
 }
 </style>

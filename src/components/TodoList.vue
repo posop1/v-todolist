@@ -1,17 +1,24 @@
 <template>
   <div class="TodoList" v-if="todos.length > 0">
     <div class="container">
+      <h2>Notes</h2>
+      <div class="item" v-for="todo in todos" :key='todo.id'>
         <todo-item 
-          :key="todo.id" 
-          v-for="todo in todos" 
+          v-if="!todo.completed"
           :todo='todo'
           @remove="$emit('remove', todo)"
         />
-    </div>
-  </div>
-  <div class="TodoEmpty" v-else>
-    <div class="container inner">
-      <h2>Todo is empty</h2>
+      </div>
+      <hr>
+      <h2 class="last">Comleted Notes</h2>
+      <div class="item" v-for="todo in todos" :key='todo.id'>
+        <todo-item 
+          v-if="todo.completed"
+          :todo='todo'
+          @remove="$emit('remove', todo)"
+          @delete="$emit('delete', todo)"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -25,7 +32,7 @@ export default {
     todos: {
         type: Array
     }
-  }
+  },
 }
 </script>
 
@@ -39,8 +46,22 @@ export default {
 .inner{
   display: flex;
   justify-content: center;
-  h2{
-    font-size: 40px;
-  }
+}
+.item {
+  margin-bottom: 30px;
+}
+h2{
+  font-size: 30px;
+  margin-bottom: 35px;
+}
+.last{
+  margin-top: 30px;
+}
+hr{
+  height: 5px;
+  background: rgba(0, 0, 0, 0.877);
+  border: none;
+  border-radius: 10px;
+  margin-top: 50px;
 }
 </style>

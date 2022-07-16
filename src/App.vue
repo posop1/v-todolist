@@ -9,12 +9,13 @@
     <todo-list 
       :todos='todos'
       @remove='removeTodo'
+      @delete='deleteTodo'
     />
   </div>
 </template>
 
 <script>
-import vHeader from './components/vHeader';
+import vHeader from '@/components/vHeader';
 import TodoList from '@/components/TodoList'
 import TodoForm from '@/components/TodoForm'
 export default {
@@ -23,10 +24,10 @@ export default {
   data() {
     return {
       todos: [
-        {id: 1, title: 'Todo 1', Datetime: new Date(Date.now()).toLocaleDateString().slice(0,-5), time: new Date(Date.now()).toLocaleTimeString().slice(0,-3)},
-        {id: 2, title: 'Todo 2', Datetime: new Date(Date.now()).toLocaleDateString().slice(0,-5), time: new Date(Date.now()).toLocaleTimeString().slice(0,-3)},
-        {id: 3, title: 'Todo 3', Datetime: new Date(Date.now()).toLocaleDateString().slice(0,-5), time: new Date(Date.now()).toLocaleTimeString().slice(0,-3)},
-        {id: 4, title: 'Todo 4', Datetime: new Date(Date.now()).toLocaleDateString().slice(0,-5), time: new Date(Date.now()).toLocaleTimeString().slice(0,-3)},
+        {id: 1, title: 'Todo 1', completed: false},
+        {id: 2, title: 'Todo 2', completed: false},
+        {id: 3, title: 'Todo 3', completed: false},
+        {id: 4, title: 'Todo 4', completed: true},
       ],
       dialogVisible: false
     }
@@ -38,11 +39,15 @@ export default {
       this.dialogVisible = false
     },
     removeTodo(todo) {
+      todo.completed = !todo.completed
+    },
+    deleteTodo(todo) {
       this.todos = this.todos.filter(t => t.id !== todo.id)
     },
     openDialog() {
       this.dialogVisible = true
-    }
+    },
+    
   }
 };
 </script>
