@@ -11,7 +11,7 @@
     <my-button v-if="!todo.completed"
       @click="$emit('remove', todo)"
     >
-      Delete
+      Complete
     </my-button>
     <div class="btn" v-else>
       <my-button 

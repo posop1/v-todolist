@@ -10,7 +10,11 @@
       :todos='todos'
       @remove='removeTodo'
       @delete='deleteTodo'
+      v-if="!isTodosLoading"
     />
+    <div class="loading" v-else-if="isTodosLoading">
+      Идёт закрузка
+    </div>
   </div>
 </template>
 
@@ -18,18 +22,17 @@
 import vHeader from '@/components/vHeader';
 import TodoList from '@/components/TodoList'
 import TodoForm from '@/components/TodoForm'
+
+import axios from 'axios'
+
 export default {
   components: { vHeader, TodoList, TodoForm },
   
   data() {
     return {
-      todos: [
-        {id: 1, title: 'Todo 1', completed: false},
-        {id: 2, title: 'Todo 2', completed: false},
-        {id: 3, title: 'Todo 3', completed: false},
-        {id: 4, title: 'Todo 4', completed: true},
-      ],
-      dialogVisible: false
+      todos: [],
+      dialogVisible: false,
+      isTodosLoading: false
     }
   },
 
@@ -47,7 +50,23 @@ export default {
     openDialog() {
       this.dialogVisible = true
     },
-    
+    async fetchTodos(){
+      try {
+        this.isTodosLoading = true
+        setTimeout( async() =>{
+          const res = await axios.get('http://jsonplaceholder.typicode.com/todos?_limit=20')
+          this.todos = res.data
+        }, 1000)
+      }catch(e){
+        alert('Ошибка')
+      }finally {
+        this.isTodosLoading = false
+      }
+    }
+  },
+
+  mounted() {
+    this.fetchTodos()
   }
 };
 </script>
