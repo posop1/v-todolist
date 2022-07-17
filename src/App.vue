@@ -38,7 +38,7 @@ export default {
 
   methods: {
     createTodo(todo) {
-      this.todos.push(todo)
+      this.todos.unshift(todo)
       this.dialogVisible = false
     },
     removeTodo(todo) {
@@ -56,18 +56,19 @@ export default {
         setTimeout( async() =>{
           const res = await axios.get('http://jsonplaceholder.typicode.com/todos?_limit=20')
           this.todos = res.data
+          this.todos = this.todos.reverse()
         }, 1000)
       }catch(e){
         alert('Ошибка')
       }finally {
         this.isTodosLoading = false
       }
-    }
+    },
   },
 
   mounted() {
     this.fetchTodos()
-  }
+  },
 };
 </script>
 

@@ -7,6 +7,7 @@
           v-if="!todo.completed"
           :todo='todo'
           @remove="$emit('remove', todo)"
+          :key="todo.id"
         />
       </div>
       <hr>
@@ -15,6 +16,7 @@
         <todo-item 
           v-if="todo.completed"
           :todo='todo'
+          :key="todo.id"
           @remove="$emit('remove', todo)"
           @delete="$emit('delete', todo)"
         />

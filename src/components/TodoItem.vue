@@ -31,9 +31,7 @@
 </template>
 
 <script>
-import MyButton from './UI/MyButton.vue'
 export default {
-  components: { MyButton },
     props: {
         todo: {
             type: Object
